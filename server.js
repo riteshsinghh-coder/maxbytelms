@@ -59,6 +59,13 @@ const formatStudent = (student) => ({
 // --- ROUTES ---
 
 // 1. Update student profile with optional image
+app.use(express.static(path.join(__dirname, 'build')));
+
+// Catch-all route to handle all requests and serve the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 app.post('/update-profile', upload.single('profileImage'), async (req, res) => {
   const { uid, password } = req.body;
   const profileImagePath = req.file?.path;
