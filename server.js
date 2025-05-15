@@ -62,7 +62,7 @@ const formatStudent = (student) => ({
 app.use(express.static(path.join(__dirname, 'build')));
 
 // Catch-all route to handle all requests and serve the React app
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
