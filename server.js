@@ -62,9 +62,6 @@ const formatStudent = (student) => ({
 app.use(express.static(path.join(__dirname)));
 
 // Catch-all route to handle all requests and serve the React app
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
 
 app.post('/update-profile', upload.single('profileImage'), async (req, res) => {
   const { uid, password } = req.body;
@@ -179,9 +176,12 @@ app.post('/upload-profile-image', upload.single('profileImage'), (req, res) => {
   const imageUrl = `/uploads/images/${req.file.filename}`;
   res.status(200).json({ message: 'Image uploaded successfully', imageUrl });
 });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 // 7. Start Server
-const port = process.env.PORT||5000;
-app.listen(port, () => {
-  console.log(`✅ Server running at http://localhost:${port}`);
+const PORT = 5000;
+app.listen(PORT, () => {
+  console.log(`✅ Server running at http://localhost:${PORT}`);
 });
