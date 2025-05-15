@@ -26,6 +26,7 @@ if (!fs.existsSync(IMAGE_UPLOAD_DIR)) {
 
 // --- Static files ---
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // --- Multer setup ---
 const storage = multer.diskStorage({
@@ -58,14 +59,12 @@ const formatStudent = (student) => ({
 
 // --- ROUTES ---
 
-// 1. Update student profile with optional image
-app.use(express.static(path.join(__dirname, 'build')));
-
-// Catch-all route to handle all requests and serve the React app
+// Serve React build (if deployed as full-stack app)
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
+// 1. Update student profile with optional image
 app.post('/update-profile', upload.single('profileImage'), async (req, res) => {
   const { uid, password } = req.body;
   const profileImagePath = req.file?.path;
@@ -180,8 +179,8 @@ app.post('/upload-profile-image', upload.single('profileImage'), (req, res) => {
   res.status(200).json({ message: 'Image uploaded successfully', imageUrl });
 });
 
-// 7. Start Server
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
+// 7. Start Server with Dynamic Port Binding (for Render)
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ Server running on port ${PORT}`);
 });
