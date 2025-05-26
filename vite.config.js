@@ -1,21 +1,16 @@
-// vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react'; // Import the plugin
 
 export default defineConfig({
   plugins: [react()], // Use the plugin
-  // You might also need to configure specific file extensions if you're mixing .js and .jsx
-  // For example, if you have React code in .js files:
-  // esbuild: {
-  //   loader: 'jsx',
-  //   include: /src\/.*\.js$/, // adjust this regex to match your files
-  //   exclude: [],
-  // },
-  // optimizeDeps: {
-  //   esbuildOptions: {
-  //     loader: {
-  //       '.js': 'jsx',
-  //     },
-  //   },
-  // },
+  server: {
+    // If your frontend needs to proxy API calls to your backend (which is on port 10000)
+    proxy: {
+      '/api': {
+        target: 'http://localhost:10000', // Your backend URL
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 });

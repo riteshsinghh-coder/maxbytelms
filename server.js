@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const MONGODB_URI = "mongodb+srv://maxbyteplacementacademy:qRogbhGwaKSlGm3U@cluster0.w1by45v.mongodb.net/?retryWrites=true&w=majority";
 const DB_NAME = "maxbyte_academy";
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 
 // Initialize Express
 const app = express();
