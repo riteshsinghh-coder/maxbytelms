@@ -15,7 +15,7 @@ const FileUpload = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const res = await fetch('http://localhost:10000/api/courses');
+        const res = await fetch('https://maxbytelms.onrender.com/api/courses');
         const data = await res.json();
 
         if (Array.isArray(data) && data[0]?.courses) {
@@ -56,7 +56,7 @@ const FileUpload = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:10000/api/videos', {
+      const response = await fetch('https://maxbytelms.onrender.com/api/videos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

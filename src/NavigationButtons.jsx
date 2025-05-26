@@ -28,7 +28,7 @@ const NavigationButtons = ({ setActiveSection }) => {
 
   // Fetch courses
   useEffect(() => {
-    fetch('http://localhost:10000/api/courses')
+    fetch('https://maxbytelms.onrender.com/api/courses')
       .then(res => res.json())
       .then(data => {
         if (data && data.length > 0 && Array.isArray(data[0].courses)) {
@@ -86,8 +86,8 @@ const NavigationButtons = ({ setActiveSection }) => {
     if (!validateForm()) return;
 
     const endpoint = type === 'student'
-      ? 'http://localhost:10000/api/students'
-      : 'http://localhost:10000/api/scholarships';
+      ? 'https://maxbytelms.onrender.com/api/students'
+      : 'https://maxbytelms.onrender.com/api/scholarships';
 
     setLoading(true);
 

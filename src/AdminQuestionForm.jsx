@@ -489,7 +489,7 @@ const AdminQuestionForm = () => {
     // Fetch Courses - No Change
     useEffect(() => {
         setIsLoadingCourses(true);
-        fetch('http://localhost:10000/api/courses')
+        fetch('https://maxbytelms.onrender.com/api/courses')
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
@@ -795,7 +795,7 @@ const AdminQuestionForm = () => {
         };
 
         try {
-            const res = await fetch('http://localhost:10000/api/assignments', { // Your backend endpoint
+            const res = await fetch('https://maxbytelms.onrender.com/api/assignments', { // Your backend endpoint
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
