@@ -6,7 +6,7 @@ import {
 } from 'react-icons/fa';
 
 // Assume this is your base URL for profile pictures
-const BASE_PROFILE_PIC_URL = 'http://localhost:5000/';
+const BASE_PROFILE_PIC_URL = 'http://localhost:10000';
 const LOGO_URL = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGniyPup7n3754KnltNPqaca7DyzaY_IAw0g&s';
 
 const StudentDashboard = () => {
@@ -62,7 +62,7 @@ const StudentDashboard = () => {
       const userSubjectsArray = Array.isArray(userData.subjects) ? userData.subjects : [userData.subjects];
 
       // Fetch courses
-      fetch('http://localhost:5000/api/courses')
+      fetch('http://localhost:10000/api/courses')
         .then(res => {
           if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
@@ -89,7 +89,7 @@ const StudentDashboard = () => {
         });
 
       // Fetch videos
-      fetch('http://localhost:5000/api/videos')
+      fetch('http://localhost:10000/api/videos')
         .then(res => {
           if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
